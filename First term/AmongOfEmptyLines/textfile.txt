@@ -1,0 +1,6 @@
+hello
+
+bye
+dead
+
+conversation \0
