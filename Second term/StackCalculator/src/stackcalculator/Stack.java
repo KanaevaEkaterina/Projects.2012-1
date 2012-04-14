@@ -1,7 +1,6 @@
+package stackcalculator;
 
-package calculator;
-
-public class Stack implements VarStack{
+public class Stack implements VarStack {
 
     private Element first;
 
@@ -9,27 +8,41 @@ public class Stack implements VarStack{
         first = null;
     }
 
+    @Override
     public void push(char j) {
         Element newEl = new Element(j);
         newEl.next = first;
         first = newEl;
     }
 
+    @Override
     public boolean isEmpty() {
         return (first == null);
     }
 
-    public char pop() {
+    @Override
+    public char pop() throws EmptyStack {
         if (!isEmpty()) {
             Element buf = first;
             first = first.next;
             return buf.value;
         } else {
             System.out.println("Error. Is empty");
-            return 0;
+            throw new EmptyStack();
         }
     }
 
+    @Override
+    public char top() throws EmptyStack {
+        if (!isEmpty()) {
+            Element buf = first;
+            return buf.value;
+        } else {
+            throw new EmptyStack();
+        }
+    }
+
+    @Override
     public void printStack() {
         System.out.print("Stack: ");
         Element current = first;
