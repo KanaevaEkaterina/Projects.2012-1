@@ -3,34 +3,31 @@ package uniquelist;
 import org.junit.*;
 import static org.junit.Assert.*;
 
-
+/**
+ * Tests for UniqueList
+ *
+ * @author Kanaeva Ekaterina
+ */
 public class UniqueListTest {
-    
+
+    /**
+     *
+     */
     public UniqueListTest() {
     }
 
-    @BeforeClass
-    public static void setUpClass() throws Exception {
-    }
-
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
-    }
-
+    /**
+     * test of searchForUniqueness method from class UniqueList
+     */
     @Test
     public void testSearchForUniqueness() {
         UniqueList instance = new UniqueList();
         assertEquals(true, instance.searchForUniqueness(2));
     }
 
+    /**
+     * test of addToBegin method from class UniqueList
+     */
     @Test
     public void testAddToBegin() throws RepeatingElement {
         UniqueList instance = new UniqueList();
@@ -39,6 +36,9 @@ public class UniqueListTest {
         assertEquals(2, instance.head.value);
     }
 
+    /**
+     * test of addToEnd method from class UniqueList
+     */
     @Test
     public void testAddToEnd() throws RepeatingElement {
         UniqueList instance = new UniqueList();
@@ -47,6 +47,9 @@ public class UniqueListTest {
         assertEquals(2, instance.tail.value);
     }
 
+    /**
+     * test of deleteElement method from class UniqueList
+     */
     @Test
     public void testDeleteElement() throws ElementNotFound, RepeatingElement {
         UniqueList instance = new UniqueList();
@@ -56,6 +59,9 @@ public class UniqueListTest {
         assertEquals(2, instance.head.value);
     }
 
+    /**
+     * test of add method from class UniqueList
+     */
     @Test
     public void testAdd() throws RepeatingElement {
         UniqueList instance = new UniqueList();
@@ -65,41 +71,64 @@ public class UniqueListTest {
         assertEquals(1, instance.head.value);
     }
 
+    /**
+     * test of addToPlace method from class UniqueList
+     */
     @Test
-    public void testAddToPlace() throws RepeatingElement{
+    public void testAddToPlace() throws RepeatingElement {
         UniqueList instance = new UniqueList();
         instance.addToPlace(2, 1);
         assertEquals(2, instance.head.value);
     }
-    
+
     @Test(expected = RepeatingElement.class)
+    /**
+     * test of addToBegin method from class UniqueList, in case, when element is
+     * repeating
+     */
     public void testAddRepeatingElementToBegin() throws RepeatingElement {
         UniqueList instance = new UniqueList();
         instance.addToBegin(2);
         instance.addToBegin(2);
-     }
-     
-     public void testAddRepeatingElementToEnd() throws RepeatingElement {
+    }
+
+    /**
+     * test of addToEnd method from class UniqueList, in case, when element is
+     * repeating
+     */
+    public void testAddRepeatingElementToEnd() throws RepeatingElement {
         UniqueList instance = new UniqueList();
         instance.addToEnd(1);
         instance.addToEnd(1);
     }
-     
-      public void testAddRepeatingElement() throws RepeatingElement {
+
+    /**
+     * test of add method from class UniqueList, in case, when element is
+     * repeating
+     */
+    public void testAddRepeatingElement() throws RepeatingElement {
         UniqueList instance = new UniqueList();
         instance.add(1);
         instance.add(1);
     }
 
+    /**
+     * test of addToPlace method from class UniqueList, in case, when element is
+     * repeating
+     */
     public void testAddRepeatingElementToPlace() throws RepeatingElement {
         UniqueList instance = new UniqueList();
         instance.addToPlace(2, 3);
         instance.addToPlace(2, 4);
         instance.addToPlace(2, 4);
     }
-    
-     @Test(expected = ElementNotFound.class)
-     public void testDeleteNotFoundElement() throws ElementNotFound, RepeatingElement {
+
+    @Test(expected = ElementNotFound.class)
+    /**
+     * test of method deleteElement from class UniqueList, in case when element
+     * is not found
+     */
+    public void testDeleteNotFoundElement() throws ElementNotFound, RepeatingElement {
         UniqueList instance = new UniqueList();
         instance.addToEnd(1);
         instance.deleteElement(2);

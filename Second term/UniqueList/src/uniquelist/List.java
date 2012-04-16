@@ -1,36 +1,25 @@
 package uniquelist;
 
+/**
+ * create list
+ *
+ * @author Kanaeva Ekaterina
+ */
 public class List {
 
-    /*public static void main(String[] args) {
-        List list = new List();
-        System.out.println(list.isEmpty());
-        list.addToBegin(9);
-        System.out.println(list.isEmpty());
-        list.addToBegin(2);
-        list.addToEnd(3);
-        list.printList();
-        list.deleteFromBegin();
-        list.printList();
-        list.deleteFromEnd();
-        list.printList();
-        list.addToBegin(5);
-        list.addToEnd(8);
-        list.printList();
-        list.add(6);
-        list.printList();
-        System.out.println(list.numberOfElements());
-        list.addToPlace(3, 4);
-        list.printList();
-        list.deleteElement(5);
-        list.printList();
-    }*/
-
+    /**
+     * constructor for list
+     */
     public List() {
     }
 
-    public void addToBegin(int value) throws RepeatingElement {
-        ListElement newEl = new ListElement(value);
+    /**
+     * add number to the begin of the list
+     *
+     * @param j value for addition
+     */
+    public void addToBegin(int j) throws RepeatingElement {
+        ListElement newEl = new ListElement(j);
         if (!isEmpty()) {
             newEl.next = head;
             head = newEl;
@@ -42,8 +31,13 @@ public class List {
 
     }
 
-    public void addToEnd(int value) throws RepeatingElement {
-        ListElement newEl = new ListElement(value);
+    /**
+     * add number to the end of the list
+     *
+     * @param j value for addition
+     */
+    public void addToEnd(int j) throws RepeatingElement {
+        ListElement newEl = new ListElement(j);
         if (isEmpty()) {
             head = newEl;
             tail = newEl;
@@ -55,11 +49,19 @@ public class List {
         }
     }
 
+    /**
+     * check if the list is empty
+     *
+     * @return true, if the list is empty, false - otherwise
+     */
     public boolean isEmpty() {
         return (head == null);
     }
 
-    public void deleteFromBegin() {
+    /**
+     * delete number from the begin of the list
+     */
+    public void deleteFromBegin() throws ElementNotFound {
         if (!isEmpty()) {
             head = head.next;
         } else {
@@ -67,7 +69,10 @@ public class List {
         }
     }
 
-    public void deleteFromEnd() {
+    /**
+     * delete number from the end of the list
+     */
+    public void deleteFromEnd() throws ElementNotFound {
         if (!isEmpty()) {
             if (head.next == null) {
                 head = null;
@@ -85,6 +90,9 @@ public class List {
         }
     }
 
+    /**
+     * print list
+     */
     public void printList() {
         System.out.print("List: ");
         ListElement current = head;
@@ -98,6 +106,11 @@ public class List {
         System.out.println(" ");
     }
 
+    /**
+     * delete the number from the list
+     *
+     * @param value value for deletion
+     */
     public void deleteElement(int value) throws ElementNotFound {
         ListElement index = head;
         if (index.value == value) {
@@ -116,10 +129,15 @@ public class List {
         }
     }
 
-    public void add(int value) throws RepeatingElement{
+    /**
+     * add number to the list in sorted order
+     *
+     * @param value value for addition
+     */
+    public void add(int value) throws RepeatingElement {
         ListElement index = head;
         ListElement further = new ListElement(value);
-        if (index == null || index.value >= value) {
+        if (index.value == value) {
             addToBegin(value);
         } else {
             while (index.next != null) {
@@ -137,9 +155,15 @@ public class List {
         }
     }
 
-    public void addToPlace(int value, int number) throws RepeatingElement{
+    /**
+     * add number to the special position in the list
+     *
+     * @param value value for addition
+     * @param number number of index, where to put the string
+     */
+    public void addToPlace(int value, int number) throws RepeatingElement {
         ListElement index = head;
-        if (number == 1 || index == null) {
+        if (number == 1) {
             addToBegin(value);
         }
         if ((number > 1) && (number <= numberOfElements())) {
@@ -161,6 +185,11 @@ public class List {
         }
     }
 
+    /**
+     * count number of elements in the list
+     *
+     * @return number of elements in the list
+     */
     public int numberOfElements() {
         ListElement index = head;
         int count = 0;
@@ -170,20 +199,42 @@ public class List {
         }
         return count;
     }
-    
+    /**
+     * pointer to the begin of the list
+     */
     protected ListElement head;
+    /**
+     * pointer to the end of the list
+     */
     protected ListElement tail;
 
+    /**
+     * element of the list
+     */
     class ListElement {
 
+        /**
+         * constructor of list's element
+         *
+         * @param n value, which should be in this list's element
+         */
         public ListElement(int n) {
             value = n;
         }
 
+        /**
+         * print list's element's value
+         */
         public void printListElement() {
             System.out.print(value + " ");
         }
+        /**
+         * value from list's element
+         */
         protected int value;
+        /**
+         * pointer to the next element in the list
+         */
         protected ListElement next;
     }
 }
