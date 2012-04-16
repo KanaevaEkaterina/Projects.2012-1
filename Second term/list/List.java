@@ -1,34 +1,34 @@
 package list;
 
+/**
+ * create list
+ *
+ * @author Kanaeva Ekaterina
+ */
 public class List {
 
-    public static void main(String[] args) {
-        List list = new List();
-        System.out.println(list.isEmpty());
-        list.addToBegin(9);
-        System.out.println(list.isEmpty());
-        list.addToBegin(2);
-        list.addToEnd(3);
-        list.printList();
-        list.deleteFromBegin();
-        list.printList();
-        list.deleteFromEnd();
-        list.printList();
-        list.addToBegin(5);
-        list.addToEnd(8);
-        list.printList();
-        list.add(6);
-        list.printList();
-        System.out.println(list.numberOfElements());
-        list.addToPlace(3, 4);
-        list.printList();
-        list.deleteElement(5);
-        list.printList();
+    /*
+     * public static void main(String[] args) { List list = new List();
+     * System.out.println(list.isEmpty()); list.addToBegin(9);
+     * System.out.println(list.isEmpty()); list.addToBegin(2); list.addToEnd(3);
+     * list.printList(); list.deleteFromBegin(); list.printList();
+     * list.deleteFromEnd(); list.printList(); list.addToBegin(5);
+     * list.addToEnd(8); list.printList(); list.add(6); list.printList();
+     * System.out.println(list.numberOfElements()); list.addToPlace(3, 4);
+     * list.printList(); list.deleteElement(5); list.printList();
     }
-
+     */
+    /**
+     * constructor for list
+     */
     public List() {
     }
 
+    /**
+     * add number to the begin of the list
+     *
+     * @param j value for addition
+     */
     public void addToBegin(int j) {
         ListElement newEl = new ListElement(j);
         if (!isEmpty()) {
@@ -42,6 +42,11 @@ public class List {
 
     }
 
+    /**
+     * add number to the end of the list
+     *
+     * @param j value for addition
+     */
     public void addToEnd(int j) {
         ListElement newEl = new ListElement(j);
         if (isEmpty()) {
@@ -55,10 +60,18 @@ public class List {
         }
     }
 
+    /**
+     * check if the list is empty
+     *
+     * @return true, if the list is empty, false - otherwise
+     */
     public boolean isEmpty() {
         return (head == null);
     }
 
+    /**
+     * delete number from the begin of the list
+     */
     public void deleteFromBegin() {
         if (!isEmpty()) {
             head = head.next;
@@ -67,6 +80,9 @@ public class List {
         }
     }
 
+    /**
+     * delete number from the end of the list
+     */
     public void deleteFromEnd() {
         if (!isEmpty()) {
             if (head.next == null) {
@@ -85,6 +101,9 @@ public class List {
         }
     }
 
+    /**
+     * print list
+     */
     public void printList() {
         System.out.print("List: ");
         ListElement current = head;
@@ -98,6 +117,11 @@ public class List {
         System.out.println(" ");
     }
 
+    /**
+     * delete the number from the list
+     *
+     * @param value value for deletion
+     */
     public void deleteElement(int value) {
         ListElement index = head;
         if (index.value == value) {
@@ -116,6 +140,11 @@ public class List {
         }
     }
 
+    /**
+     * add number to the list in sorting order
+     *
+     * @param value value for addition
+     */
     public void add(int value) {
         ListElement index = head;
         ListElement further = new ListElement(value);
@@ -137,6 +166,12 @@ public class List {
         }
     }
 
+    /**
+     * add number to the special position in the list
+     *
+     * @param value value for addition
+     * @param number number of index, where to put the string
+     */
     public void addToPlace(int value, int number) {
         ListElement index = head;
         if (number == 1) {
@@ -161,6 +196,11 @@ public class List {
         }
     }
 
+    /**
+     * count number of elements in the list
+     *
+     * @return number of elements in the list
+     */
     public int numberOfElements() {
         ListElement index = head;
         int count = 0;
@@ -170,19 +210,42 @@ public class List {
         }
         return count;
     }
+    /**
+     * pointer to the begin of the list
+     */
     private ListElement head;
+    /**
+     * pointer to the end of the list
+     */
     private ListElement tail;
 
+    /**
+     * element of the list
+     */
     class ListElement {
 
+        /**
+         * constructor of list's element
+         *
+         * @param n value, which should be in this list's element
+         */
         public ListElement(int n) {
             value = n;
         }
 
+        /**
+         * print list's element's value
+         */
         public void printListElement() {
             System.out.print(value + " ");
         }
+        /**
+         * value from list's element
+         */
         private int value;
+        /**
+         * pointer to the next element in the list
+         */
         private ListElement next;
     }
 }
