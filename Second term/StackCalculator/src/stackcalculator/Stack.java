@@ -1,13 +1,29 @@
 package stackcalculator;
 
+/**
+ * create stack using list
+ *
+ * @author Kanaeva Ekaterina
+ */
 public class Stack implements VarStack {
 
+    /**
+     * first element in the list
+     */
     private Element first;
 
+    /**
+     * constructor for stack using list
+     */
     public Stack() {
         first = null;
     }
 
+    /**
+     * add element to the begin of the list
+     *
+     * @param element element for addition
+     */
     @Override
     public void push(char j) {
         Element newEl = new Element(j);
@@ -15,11 +31,21 @@ public class Stack implements VarStack {
         first = newEl;
     }
 
+    /**
+     * shows, if the list is empty
+     *
+     * @return true if array is empty, false - otherwise
+     */
     @Override
     public boolean isEmpty() {
         return (first == null);
     }
 
+    /**
+     * delete element from the begin of the list
+     *
+     * @return element, that was deleted
+     */
     @Override
     public char pop() throws EmptyStack {
         if (!isEmpty()) {
@@ -32,6 +58,11 @@ public class Stack implements VarStack {
         }
     }
 
+    /**
+     * return element from the top(form the begin of the list)
+     *
+     * @return element, that was deleted
+     */
     @Override
     public char top() throws EmptyStack {
         if (!isEmpty()) {
@@ -42,6 +73,9 @@ public class Stack implements VarStack {
         }
     }
 
+    /**
+     * print list
+     */
     @Override
     public void printStack() {
         System.out.print("Stack: ");
@@ -56,15 +90,32 @@ public class Stack implements VarStack {
         System.out.println(" ");
     }
 
+    /**
+     * list's element
+     */
     class Element {
 
+        /**
+         * value of element in the list
+         */
         private char value;
+        /**
+         * pointer to the next element in the list
+         */
         private Element next;
 
+        /**
+         * constructor for list's element
+         *
+         * @param n value, which should be in the new element
+         */
         public Element(char n) {
             value = n;
         }
 
+        /**
+         * print element of the list
+         */
         public void printElement() {
             System.out.print(value + " ");
         }
