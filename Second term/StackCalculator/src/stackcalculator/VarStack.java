@@ -5,7 +5,7 @@ package stackcalculator;
  *
  * @author Kanaeva Ekaterina
  */
-interface VarStack {
+public interface VarStack {
 
     /**
      * add element to stack
