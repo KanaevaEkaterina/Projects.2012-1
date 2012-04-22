@@ -26,7 +26,7 @@ public class HashTTest {
     public void testAddHash() {
         HashT instance = new HashT();
         instance.addHash("b");
-        assertEquals(true, instance.isInHashTable("b"));
+        assertTrue(instance.isInHashTable("b"));
     }
 
     /**
@@ -35,7 +35,7 @@ public class HashTTest {
     @Test
     public void TestIsInHashTable() {
         HashT instance = new HashT();
-        assertEquals(false, instance.isInHashTable("be"));
+        assertFalse(instance.isInHashTable("be"));
     }
 
     /**
@@ -46,6 +46,6 @@ public class HashTTest {
         HashT instance = new HashT();
         instance.addHash("b");
         instance.deleteElement("b");
-        assertEquals(false, instance.isInHashTable("b"));
+        assertFalse(instance.isInHashTable("b"));
     }
 }

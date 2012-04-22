@@ -22,7 +22,7 @@ public class HashT {
      * @param str string for conversion
      * @return value or hash function of the string
      */
-    public int hashFunction(String str) {
+    private int hashFunction(String str) {
         int hashCount = 0;
         for (int i = 0; i < str.length(); i++) {
             char[] str1 = str.toCharArray();
@@ -37,7 +37,7 @@ public class HashT {
      * @param str string for addition
      */
     public void addHash(String str) {
-        int i = hashFunction(str) % 100;
+        int i = hashFunction(str) % hashSize;
         mass[i].addToEnd(str);
     }
 
@@ -59,7 +59,7 @@ public class HashT {
      * @return true, if the string is in hash table, false - otherwise
      */
     public boolean isInHashTable(String str) {
-        int i = hashFunction(str) % 100;
+        int i = hashFunction(str) % hashSize;
         return mass[i].searchForElement(str);
     }
 
@@ -69,7 +69,7 @@ public class HashT {
      * @param str string for deletion
      */
     public void deleteElement(String str) {
-        int i = hashFunction(str) % 100;
+        int i = hashFunction(str) % hashSize;
         mass[i].deleteElement(str);
     }
     /**

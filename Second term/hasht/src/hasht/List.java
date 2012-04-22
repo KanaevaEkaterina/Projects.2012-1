@@ -23,11 +23,11 @@ public class List {
         boolean isFound = false;
         ListElement index = head;
         if (index != null) {
-            if (index.next == null && index.value == value) {
+            if (index.next == null && index.value.equals(value)) {
                 isFound = true;
             } else {
                 while (index.next != null) {
-                    if (index.value != value) {
+                    if (!index.value.equals(value)) {
                         index = index.next;
                     } else {
                         isFound = true;
@@ -139,17 +139,17 @@ public class List {
      */
     public void deleteElement(String value) {
         ListElement index = head;
-        if (index.value == value) {
+        if (index.value.equals(value)) {
             deleteFromBegin();
         } else {
             while (index.next != null) {
-                if (index.next.value == value) {
+                if (index.next.value.equals(value)) {
                     index.next = index.next.next;
                 } else {
                     index = index.next;
                 }
             }
-            if ((index.next == null) && (index.value == value)) {
+            if ((index.next == null) && (index.value.equals(value))) {
                 deleteFromEnd();
             }
         }
