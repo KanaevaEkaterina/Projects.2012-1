@@ -12,9 +12,6 @@ public class HashTTest {
     public HashTTest() {
     }
 
-    /**
-     * Test of hashFunction method form class HashT.
-     */
     @Test
     public void testHashFunction() {
         HashT instance = new HashT();
