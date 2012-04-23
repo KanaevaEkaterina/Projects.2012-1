@@ -20,9 +20,13 @@ public class UniqueListTest {
      * test of searchForUniqueness method from class UniqueList
      */
     @Test
-    public void testSearchForUniqueness() {
+    public void testSearchForUniqueness() throws RepeatingElement {
         UniqueList instance = new UniqueList();
         assertEquals(true, instance.searchForUniqueness(2));
+        instance.addToBegin(3);
+        instance.addToBegin(2);
+        assertEquals(false, instance.searchForUniqueness(2));
+        assertEquals(false, instance.searchForUniqueness(3));
     }
 
     /**
@@ -42,7 +46,7 @@ public class UniqueListTest {
     @Test
     public void testAddToEnd() throws RepeatingElement {
         UniqueList instance = new UniqueList();
-        instance.addToEnd(1);
+        instance.addToEnd(3);
         instance.addToEnd(2);
         assertEquals(2, instance.tail.value);
     }
@@ -67,8 +71,10 @@ public class UniqueListTest {
         UniqueList instance = new UniqueList();
         instance.add(2);
         instance.add(1);
+        instance.add(4);
         instance.add(3);
         assertEquals(1, instance.head.value);
+        assertEquals(4, instance.tail.value);
     }
 
     /**

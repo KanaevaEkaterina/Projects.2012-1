@@ -15,26 +15,19 @@ public class UniqueList extends List {
 
     /**
      * shows if the element is already in the list
-     * 
+     *
      * @param value value which should be tested for the presence in the list
      * @return true if the element is not found in the list, false - otherwise
      */
     public boolean searchForUniqueness(int value) {
         boolean notFound = true;
         ListElement index = head;
-        if (index != null) {
-            if (index.next == null && index.value == value) {
+        while (index != null){
+            if (index.value == value) {
                 notFound = false;
-            } else {
-                while (index.next != null) {
-                    if (index.value != value) {
-                        index = index.next;
-                    } else {
-                        notFound = false;
-                        break;
-                    }
-                }
+                break;
             }
+            index = index.next;
         }
         return notFound;
     }
@@ -62,7 +55,7 @@ public class UniqueList extends List {
     @Override
     public void addToEnd(int value) throws RepeatingElement {
         if (searchForUniqueness(value)) {
-           super.addToBegin(value);
+            super.addToEnd(value);
         } else {
             throw new RepeatingElement();
         }
