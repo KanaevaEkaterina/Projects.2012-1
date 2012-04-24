@@ -148,7 +148,7 @@ public class List {
     public void add(int value) {
         ListElement index = head;
         ListElement further = new ListElement(value);
-        if (index.value == value) {
+        if (index == null || (index.next == null && index.value >= value)) {
             addToBegin(value);
         } else {
             while (index.next != null) {
