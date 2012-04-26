@@ -17,21 +17,6 @@ public class HashT {
     }
 
     /**
-     * return hash function of the string
-     *
-     * @param str string for conversion
-     * @return value or hash function of the string
-     */
-    private int hashFunction(String str) {
-        int hashCount = 0;
-        for (int i = 0; i < str.length(); i++) {
-            char[] str1 = str.toCharArray();
-            hashCount = hashCount * p + str1[i];
-        }
-        return hashCount;
-    }
-
-    /**
      * add element to hash table
      *
      * @param str string for addition
@@ -84,4 +69,19 @@ public class HashT {
      * elements of hash table
      */
     private List[] mass = new List[hashSize];
+    
+    /**
+     * return hash function of the string
+     *
+     * @param str string for conversion
+     * @return value or hash function of the string
+     */
+    private int hashFunction(String str) {
+        int hashCount = 0;
+        for (int i = 0; i < str.length(); i++) {
+            char[] str1 = str.toCharArray();
+            hashCount = hashCount * p + str1[i];
+        }
+        return hashCount;
+    }
 }

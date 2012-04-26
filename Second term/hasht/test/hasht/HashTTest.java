@@ -12,13 +12,6 @@ public class HashTTest {
     public HashTTest() {
     }
 
-    @Test
-    public void testHashFunction() {
-        HashT instance = new HashT();
-        int result = instance.hashFunction("b");
-        assertEquals(98, result);
-    }
-
     /**
      * Test of addHash method form class HashT.
      */
