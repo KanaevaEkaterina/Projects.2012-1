@@ -79,7 +79,7 @@ public class SetTest {
         set.add(3);
         Set<Integer> resultSet = new Set<>();
         resultSet.add(3);
-        assertEquals(true, resultSet.equalSets(set.intersectionOfSets(set2, set)));
+        assertEquals(true, resultSet.equalSets(set.intersectionOfSets(set2)));
     }
     
     /**
@@ -111,7 +111,7 @@ public class SetTest {
         resultSet.add(3);
         resultSet.add(2);
         resultSet.add(5);
-        assertTrue(resultSet.equalSets(set.unionOfSets(set2, set)));
+        assertTrue(resultSet.equalSets(set.unionOfSets(set2)));
     }
 
     /**

@@ -20,7 +20,7 @@ public class Set<T> {
      */
     public void add(T element) {
         if (!isInSet(element)) {
-            SetElement newEl = new SetElement(element);
+            SetElement<T> newEl = new SetElement<>(element);
             if (!isEmpty()) {
                 newEl.next = first;
                 first = newEl;
@@ -67,14 +67,13 @@ public class Set<T> {
     /**
      * return intersection of two sets
      *
-     * @param set1 first set for intersection
      * @param set2 second set for intersection
      * @return set - result of intersection
      */
-    public Set<T> intersectionOfSets(Set<T> set1, Set<T> set2) {
+    public Set<T> intersectionOfSets(Set<T> set2) {
         Set<T> resultSet = new Set<>();
-        SetElement<T> currentInFirstSet = set1.first;
-        if (!set1.isEmpty() && !set2.isEmpty()) {
+        SetElement<T> currentInFirstSet = this.first;
+        if (!this.isEmpty() && !set2.isEmpty()) {
             while (currentInFirstSet != null) {
                 if (set2.isInSet(currentInFirstSet.value))
                     resultSet.add(currentInFirstSet.value);
@@ -87,12 +86,11 @@ public class Set<T> {
     /**
      * return union of two sets
      *
-     * @param set1 first set for union
      * @param set2 second set for union
      * @return set - result of union
      */
-    public Set<T> unionOfSets(Set<T> set1, Set<T> set2) {
-        Set<T> resultSet = set1;
+    public Set<T> unionOfSets(Set<T> set2) {
+        Set<T> resultSet = this;
         SetElement<T> currentInSecondSet = set2.first;
         while (currentInSecondSet != null) {
             resultSet.add(currentInSecondSet.value);
@@ -126,7 +124,7 @@ public class Set<T> {
      */
     public void printSet() {
         System.out.print("Set: ");
-        SetElement current = first;
+        SetElement<T> current = first;
         if (isEmpty()) {
             System.out.println("Is empty");
         } else {
