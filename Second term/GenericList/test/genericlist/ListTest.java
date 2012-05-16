@@ -285,6 +285,20 @@ public class ListTest {
         
     }
     
+    /**
+     * Test of foreach
+     */
+    @Test
+    public void testForeach() throws DeletionFromEmptyListException {
+        intList.addToBegin(3);
+        intList.addToBegin(4);
+        intList.addToBegin(5);
+        for (Integer i : intList) {
+            assertEquals(intList.first(), i, 0.0);
+            intList.deleteFromBegin();
+        }
+    }
+    
 
     private List<Integer> intList;
     private List<String> strList;
