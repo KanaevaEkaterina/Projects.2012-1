@@ -23,9 +23,9 @@ public abstract class ParseTreeElement {
             return rChild;
         }
 
-        public void setLChild(ParseTreeElement child) {
-            lChild = child;
-        }
+        public abstract void setLChild(ParseTreeElement child);// {
+           // lChild = child;
+        //}
 
         public void setRChild(ParseTreeElement child) {
             rChild = child;
