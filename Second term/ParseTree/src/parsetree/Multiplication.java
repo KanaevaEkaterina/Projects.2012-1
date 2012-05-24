@@ -9,6 +9,24 @@ package parsetree;
  */
 public class Multiplication extends Operation {
 
+    /*
+     * print '*', as label of the operation
+     */
+    @Override
+    public void print() {
+        System.out.print('*');
+    }
+
+    /*
+     * return label = '*'
+     *
+     * @return '*'
+     */
+    @Override
+    public char getLabel() {
+        return '*';
+    }
+
     /**
      * multiplication
      *
@@ -17,7 +35,7 @@ public class Multiplication extends Operation {
      * @return result of multiplication
      */
     @Override
-    public int calc(int first, int second){
-            return first * second;
+    public int calc(int first, int second) {
+        return first * second;
     }
 }

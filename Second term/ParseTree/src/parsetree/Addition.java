@@ -9,6 +9,24 @@ package parsetree;
  */
 public class Addition extends Operation {
 
+    /*
+     * print '+', as label of the operation
+     */
+    @Override
+    public void print() {
+        System.out.print('+');
+    }
+
+    /*
+     * return label = '+'
+     *
+     * @return '+'
+     */
+    @Override
+    public char getLabel() {
+        return '+';
+    }
+
     /**
      * addition
      *
@@ -17,7 +35,7 @@ public class Addition extends Operation {
      * @return result of addition
      */
     @Override
-    public int calc(int first, int second){
-            return first + second;
+    public int calc(int first, int second) {
+        return first + second;
     }
 }

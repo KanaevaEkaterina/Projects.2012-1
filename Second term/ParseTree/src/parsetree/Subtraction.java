@@ -9,6 +9,24 @@ package parsetree;
  */
 public class Subtraction extends Operation {
 
+    /*
+     * print '-', as label of the operation
+     */
+    @Override
+    public void print(){
+        System.out.print('-');
+    }
+    
+    /*
+     * return label = '-'
+     * 
+     * @return '-'
+     */
+    @Override
+    public char getLabel(){
+        return '-';
+    }
+    
     /**
      * subtraction
      *

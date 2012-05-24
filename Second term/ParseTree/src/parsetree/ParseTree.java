@@ -10,20 +10,58 @@ package parsetree;
 
 public class ParseTree {
 
+    /*
+     * constructor for ParseTree
+     *
+     * @param str string which should be count
+     */
     public ParseTree(String str) {
-
         addToTree(str, root, 0);
     }
 
+    /*
+     * create element for ParseTree
+     *
+     * @param ch label, depends on which element will be number or operation
+     * @return created element
+     */
+    public static ParseTreeElement createElement(char ch) {
+        if (ch >= '0' && ch <= '9') {
+            return new Leaf(ch);
+        }
+        if (ch == '+') {
+            return new Addition();
+        }
+        if (ch == '-') {
+            return new Subtraction();
+        }
+        if (ch == '*') {
+            return new Multiplication();
+        }
+        if (ch == '/') {
+            return new Division();
+        } else {
+            return null;
+        }
+    }
+
+    /*
+     * add symbol from string to the current place in the tree
+     *
+     * @param str string for taking symbols @param current element to which new
+     * element will be add @param pos number of symbol in the string for
+     * addition
+     */
     public void addToTree(String str, ParseTreeElement current, int pos) {
         if (current == root) {
-            ParseTreeElement parent = new ParseTreeElement(str.charAt(pos));
-            current = parent;
+            ParseTreeElement parent = createElement(str.charAt(pos));
             root = parent;
+            current = parent;
             pos++;
         }
-        ParseTreeElement lCh = new ParseTreeElement(str.charAt(pos));
+        ParseTreeElement lCh = createElement(str.charAt(pos));
         current.setLChild(lCh);
+        lCh.setParent(current);
         pos++;
         if (!current.getLChild().isDigit()) {
             addToTree(str, current.getLChild(), pos);
@@ -37,188 +75,99 @@ public class ParseTree {
                 }
                 pos++;
             }
-            ParseTreeElement rCh = new ParseTreeElement(str.charAt(pos));
+            ParseTreeElement rCh = createElement(str.charAt(pos));
             current.setRChild(rCh);
+            rCh.setParent(current);
             if (!current.getRChild().isDigit()) {
-                 pos++;
-                 addToTree(str, current.getRChild(), pos);
+                pos++;
+                addToTree(str, current.getRChild(), pos);
             }
-        } 
-        else {
-            ParseTreeElement rCh = new ParseTreeElement(str.charAt(pos));
+        } else {
+            ParseTreeElement rCh = createElement(str.charAt(pos));
             current.setRChild(rCh);
-        }
-
-
-    }
-
-    public interface Operation {
-
-        public int calc(int first, int second) throws DivisionByZero;
-    }
-
-    public class Sum implements Operation {
-
-        @Override
-        public int calc(int first, int second) {
-            return first + second;
-        }
-    }
-
-    public class Minus implements Operation {
-
-        @Override
-        public int calc(int first, int second) {
-            return first - second;
-        }
-    }
-
-    public class Division implements Operation {
-
-        @Override
-        public int calc(int first, int second) throws DivisionByZero {
-            if (second != 0) {
-                return first / second;
-            } else {
-                throw new DivisionByZero();
+            rCh.setParent(current);
+            if (!current.getRChild().isDigit()) {
+                pos++;
+                addToTree(str, current.getRChild(), pos);
             }
         }
+
+
     }
 
-    public class Multiplication implements Operation {
-
-        @Override
-        public int calc(int first, int second) {
-            return first * second;
-        }
-    }
-
-   public void print(){
-       System.out.println(root.label);
-       System.out.print(root.lChild.label);
-       System.out.print(" ");
-       System.out.println(root.rChild.label);
-       System.out.println(root.rChild.label);
-       System.out.print(root.lChild.lChild.label);
-       System.out.print(" ");
-       System.out.print(root.lChild.rChild.label);
-       System.out.print(" ");
-   }
-   
-    public int calculator(ParseTreeElement current) {
+    /*
+     * calculate down from current element in the tree
+     *
+     * @param current starting element for calculation @return result of
+     * calculation
+     */
+    public int calculator(ParseTreeElement current) throws DivisionByZero {
         int first = 0;
         int second = 0;
-        char sign = current.getLabel();
-        System.out.println(sign);
         if (!current.getLChild().isDigit()) {
             first = calculator(current.getLChild());
-            System.out.println(first);
         } else {
-        first = current.getLChild().getLabel() - 48;
-        System.out.println(first);
+            first = current.getLChild().getLabel() - 48;
         }
         if (!current.getRChild().isDigit()) {
             second = calculator(current.getRChild());
-            System.out.println(second);
         } else {
-        second = current.getRChild().getLabel() - 48;
-        System.out.println(second);
+            second = current.getRChild().getLabel() - 48;
         }
-        if (sign == '+') {
-            return first + second;
-        }
-        if (sign == '-') {
-            return first - second;
-        }
-        if (sign == '*') {
-            return first * second;
-        }
-        if (sign == '/') {
-            return first / second;
-        } else {
-            return 0;
-        }
-
-
+        ParseTreeElement sign = current;
+        return sign.calc(first, second);
     }
 
-    public void preorder(ParseTreeElement pos) {
-        ParseTreeElement tmp = pos;
-        System.out.print(tmp.getLabel());
+    /*
+     * print tree in right order from current place
+     *
+     * @param current starting element
+     */
+   /* public void preorder(ParseTreeElement current) {
+        ParseTreeElement tmp = current;
+        tmp.print();
         ParseTreeElement child = tmp.getLChild();
-        while (!child.isEmpty()) {
+        while (child.lChild != null) {
             preorder(child);
-            child = child.getRSibling();
+            //child = child.getRSibling();
         }
+        child.print();
+        preorder(child.getRSibling());
     }
 
-    public ParseTreeElement getRoot() {
-        return root;
-
-
+    /*
+     * print tree 
+     */
+   /* public void print() {
+        preorder(root);
     }
+    * 
+    */
+    
+
+    /*
+     * calculate ParseTree
+     */
+    public void calculationOfTree() throws DivisionByZero {
+        System.out.print("Result: ");
+        System.out.println(calculator(root));
+    }
+
+    /*
+     * root of the ParseTree
+     */
     private ParseTreeElement root;
 
-    public class ParseTreeElement {
-
-        public ParseTreeElement() {
-        }
-
-        public ParseTreeElement(char newLabel) {
-            label = newLabel;
-        }
-
-        public ParseTreeElement getLChild() {
-            return lChild;
-        }
-
-        public ParseTreeElement getRChild() {
-            return rChild;
-        }
-
-        public void setLChild(ParseTreeElement child) {
-            lChild = child;
-        }
-
-        public void setRChild(ParseTreeElement child) {
-            rChild = child;
-        }
-
-        public ParseTreeElement getLSibling() {
-            return parent.lChild;
-        }
-
-        public ParseTreeElement getRSibling() {
-            return parent.rChild;
-        }
-
-        public char getLabel() {
-            return label;
-        }
-
-        public void setLabel(char newLabel) {
-            label = newLabel;
-        }
-
-        public boolean isEmpty() {
-            return (rChild == null && lChild == null);
-        }
-
-        public boolean isDigit() {
-            return (getLabel() <= '9' && getLabel() >= '0');
-        }
-        private ParseTreeElement lChild;
-        private ParseTreeElement rChild;
-        private ParseTreeElement parent;
-        char label;
-    }
-
     /**
-     * @param args the command line arguments
+     * write resilt of calculation of given string
      */
     public static void main(String[] args) {
-        String str = "+-54+36";
+        String str = "*+55-42";
         ParseTree tree = new ParseTree(str);
-        System.out.println(tree.calculator(tree.getRoot()));
+        try {
+            tree.calculationOfTree();
+        } catch (DivisionByZero e) {
+            e.printStackTrace();
+        }
     }
 }
