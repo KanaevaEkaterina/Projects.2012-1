@@ -123,27 +123,22 @@ public class ParseTree {
      *
      * @param current starting element
      */
-   /* public void preorder(ParseTreeElement current) {
+    public void preorder(ParseTreeElement current) {
         ParseTreeElement tmp = current;
         tmp.print();
         ParseTreeElement child = tmp.getLChild();
-        while (child.lChild != null) {
+        if (child != null) {
             preorder(child);
-            //child = child.getRSibling();
+            preorder(child.getRSibling());
         }
-        child.print();
-        preorder(child.getRSibling());
     }
 
     /*
-     * print tree 
+     * print tree
      */
-   /* public void print() {
+    public void print() {
         preorder(root);
     }
-    * 
-    */
-    
 
     /*
      * calculate ParseTree
@@ -164,6 +159,9 @@ public class ParseTree {
     public static void main(String[] args) {
         String str = "*+55-42";
         ParseTree tree = new ParseTree(str);
+        System.out.print("Tree: ");
+        tree.print();
+        System.out.println(" ");
         try {
             tree.calculationOfTree();
         } catch (DivisionByZero e) {
