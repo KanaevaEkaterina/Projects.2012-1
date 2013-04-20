@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "listConversion", "listConversion\listConversion.fsproj", "{B30CC06F-F903-4480-B46B-37682D2326C9}"
 EndProject
 Global
