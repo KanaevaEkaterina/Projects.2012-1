@@ -30,5 +30,5 @@ let expr = Multiplication(Plus(Variable('x'), Const(2)), Variable('x'))
 Console.Write("Expression: ")
 Console.WriteLine(expressionInString expr)
 Console.Write("Derivative: ")
-Console.WriteLine(expressionInString <| derivativeOfExpr expr)
+Console.Write(expressionInString <| derivativeOfExpr expr)
 Console.Read() |> ignore
