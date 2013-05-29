@@ -18,7 +18,10 @@ let no boolean =
 
 let rec correctBracketsInList (list : List<char>) (stack : List<char>) (flag : bool): bool =
     match list with
-    | [] -> flag
+    | [] -> if (stack.Length = 0) then
+                flag
+            else
+                false
     | head::tail ->   
                     let bracket = list.Head
                     let intFlag =   if (bracket.Equals '{' || bracket.Equals '[' || bracket.Equals '(') then
@@ -62,7 +65,7 @@ let rec correctBracketsInList (list : List<char>) (stack : List<char>) (flag : b
                                 else stack
 
                     correctBracketsInList list.Tail stack <|intToBool(intFlag)
-
+    
 let correctBracketsInString str : bool = 
     let list = Seq.toList(str)
     let stack = []
